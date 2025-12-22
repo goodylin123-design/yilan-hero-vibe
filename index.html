@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>擺渡蘭陽英雄之旅</title>
+  <style>
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #1e3c72 50%, #2a5298 75%, #1e88e5 100%);
+      background-attachment: fixed;
+      position: relative;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .card{
+      width:min(720px, 92vw);
+      background: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(250,248,245,0.98) 100%);
+      border-radius:24px;
+      padding:32px 28px;
+      box-shadow: 
+        0 20px 60px rgba(0,0,0,0.3),
+        0 0 0 1px rgba(255,255,255,0.2) inset;
+      text-align:center;
+      position: relative;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    h1{
+      margin:0 0 16px;
+      font-size:32px;
+      letter-spacing:1px;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e88e5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+    .subtitle{
+      margin:0 0 24px;
+      color:#2c5282;
+      font-size:15px;
+      line-height:1.7;
+      font-weight: 500;
+    }
+    button{
+      border: 3px solid rgba(255,255,255,0.8);
+      border-radius:16px;
+      padding:16px 32px;
+      font-size:17px;
+      font-weight: 700;
+      cursor:pointer;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
+      color:#fff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      box-shadow: 
+        0 8px 20px rgba(245,158,11,0.4),
+        0 4px 8px rgba(0,0,0,0.2),
+        inset 0 1px 0 rgba(255,255,255,0.3);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+    }
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+    button:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 
+        0 12px 28px rgba(245,158,11,0.5),
+        0 6px 12px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.4);
+      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+    }
+    button:hover::before {
+      left: 100%;
+    }
+    button:active{ 
+      transform: translateY(0px) scale(0.98);
+      box-shadow: 
+        0 4px 12px rgba(245,158,11,0.4),
+        0 2px 4px rgba(0,0,0,0.2),
+        inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+    .quote{
+      margin:24px auto 0;
+      padding:20px 18px;
+      border-radius:16px;
+      background: linear-gradient(135deg, rgba(30,58,138,0.1) 0%, rgba(37,99,235,0.15) 100%);
+      border: 2px solid rgba(30,58,138,0.2);
+      color:#1e3a8a;
+      font-size:19px;
+      line-height:1.9;
+      min-height:72px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 500;
+      box-shadow: inset 0 2px 8px rgba(30,58,138,0.1);
+    }
+    .hint{
+      margin-top:14px;
+      color:#4a5568;
+      font-size:13px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>擺渡蘭陽英雄之旅</h1>
+    <p class="subtitle">點擊按鈕，聽英雄對你說一句話。</p>
+
+    <button id="btn">召喚英雄一句話</button>
+
+    <div id="quote" class="quote" aria-live="polite">（英雄的話會出現在這裡）</div>
+    <div class="hint">小提示：可重複點擊，每次都可能不同。</div>
+  </main>
+
+  <script>
+    const quotes = [
+      "你不需要急著抵達，先把每一步走穩。",
+      "今天的你，比昨天更接近自己。",
+      "把目光放遠，海風會替你整理心緒。",
+      "別怕孤單，孤單是一種力量的誕生。",
+      "走到這裡，你已經很勇敢了。"
+    ];
+
+    const btn = document.getElementById("btn");
+    const quoteEl = document.getElementById("quote");
+
+    function pickQuote() {
+      const q = quotes[Math.floor(Math.random() * quotes.length)];
+      quoteEl.textContent = "「" + q + "」";
+    }
+
+    btn.addEventListener("click", pickQuote);
+  </script>
+</body>
+</html>
