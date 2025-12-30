@@ -1,164 +1,220 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>擺渡蘭陽英雄之旅</title>
-  <style>
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #1e3c72 50%, #2a5298 75%, #1e88e5 100%);
-      background-attachment: fixed;
-      position: relative;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
-      pointer-events: none;
-    }
-    .card{
-      width:min(720px, 92vw);
-      background: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(250,248,245,0.98) 100%);
-      border-radius:24px;
-      padding:32px 28px;
-      box-shadow: 
-        0 20px 60px rgba(0,0,0,0.3),
-        0 0 0 1px rgba(255,255,255,0.2) inset;
-      text-align:center;
-      position: relative;
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(255,255,255,0.3);
-    }
-    h1{
-      margin:0 0 16px;
-      font-size:32px;
-      letter-spacing:1px;
-      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e88e5 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
-    }
-    .subtitle{
-      margin:0 0 24px;
-      color:#2c5282;
-      font-size:15px;
-      line-height:1.7;
-      font-weight: 500;
-    }
-    button{
-      border: 3px solid rgba(255,255,255,0.8);
-      border-radius:16px;
-      padding:16px 32px;
-      font-size:17px;
-      font-weight: 700;
-      cursor:pointer;
-      background: linear-gradient(135deg, #f59e0b 0%, #d97706 50%, #b45309 100%);
-      color:#fff;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      box-shadow: 
-        0 8px 20px rgba(245,158,11,0.4),
-        0 4px 8px rgba(0,0,0,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.3);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      letter-spacing: 0.5px;
-    }
-    button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s;
-    }
-    button:hover {
-      transform: translateY(-2px) scale(1.02);
-      box-shadow: 
-        0 12px 28px rgba(245,158,11,0.5),
-        0 6px 12px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.4);
-      background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
-    }
-    button:hover::before {
-      left: 100%;
-    }
-    button:active{ 
-      transform: translateY(0px) scale(0.98);
-      box-shadow: 
-        0 4px 12px rgba(245,158,11,0.4),
-        0 2px 4px rgba(0,0,0,0.2),
-        inset 0 2px 4px rgba(0,0,0,0.2);
-    }
-    .quote{
-      margin:24px auto 0;
-      padding:20px 18px;
-      border-radius:16px;
-      background: linear-gradient(135deg, rgba(30,58,138,0.1) 0%, rgba(37,99,235,0.15) 100%);
-      border: 2px solid rgba(30,58,138,0.2);
-      color:#1e3a8a;
-      font-size:19px;
-      line-height:1.9;
-      min-height:72px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight: 500;
-      box-shadow: inset 0 2px 8px rgba(30,58,138,0.1);
-    }
-    .hint{
-      margin-top:14px;
-      color:#4a5568;
-      font-size:13px;
-      font-weight: 500;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="踏上藍色海岸冒險之旅，探索無盡海洋、神秘島嶼與刺激的航海探險。">
+    <title>藍色海岸冒險</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="card">
-    <h1>擺渡蘭陽英雄之旅</h1>
-    <p class="subtitle">點擊按鈕，聽英雄對你說一句話。</p>
+    <div class="ocean-background" aria-hidden="true">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+    </div>
+    
+    <!-- 海岸與沙丘前景（純裝飾用） -->
+    <div class="coastline" aria-hidden="true">
+        <div class="dune dune-front"></div>
+        <div class="dune dune-mid"></div>
+        <div class="dune dune-back"></div>
+        <div class="coastline-highlight"></div>
+    </div>
+    
+    <div class="container">
+        <header class="header">
+            <h1 class="title">🌊 藍色海岸冒險</h1>
+            <p class="subtitle">宜蘭海岸・內在成長型三關英雄旅程</p>
+        </header>
+        
+        <main id="main-content" class="content">
+            <section class="card" aria-labelledby="hero-title">
+                <h2 id="hero-title">內在成長型三關英雄旅程（宜蘭海岸）</h2>
+                <p>沿著外澳到蘇澳的海線，讓心跳與海風同步，一關一關長出新的自己。</p>
+                
+                <ol class="journey-steps">
+                    <li><strong>第一關｜啟程：外澳海灘</strong> — 找到你的「出航理由」，寫下此刻的勇氣宣言。</li>
+                    <li><strong>第二關｜跨越：蘭陽細雨與海風</strong> — 直面內心的疑慮，在風雨中練習穩住呼吸與腳步。</li>
+                    <li><strong>第三關｜回歸：蘇澳日出港</strong> — 把旅程的洞見收束，為自己頒發一枚勇氣章，並分享給同伴。</li>
+                </ol>
 
-    <button id="btn">召喚英雄一句話</button>
+                <!-- 英雄任務選擇 -->
+                <section class="hero-missions" aria-label="英雄任務選擇">
+                    <h3 class="hero-missions-title">選擇今天的英雄任務</h3>
+                    <p class="hero-missions-subtitle">依照當下的狀態，挑一個任務，AI 會給你一段專屬回饋。</p>
 
-    <div id="quote" class="quote" aria-live="polite">（英雄的話會出現在這裡）</div>
-    <div class="hint">小提示：可重複點擊，每次都可能不同。</div>
-  </main>
+                    <div class="hero-missions-buttons">
+                        <button type="button" class="mission-btn" data-mission="wave">
+                            🌊 海風中的呢喃任務
+                        </button>
+                        <button type="button" class="mission-btn" data-mission="rain">
+                            🌧 蘭陽細雨陪伴任務
+                        </button>
+                        <button type="button" class="mission-btn" data-mission="dawn">
+                            🌅 蘇澳日出勇氣任務
+                        </button>
+                    </div>
 
-  <script>
-    const quotes = [
-      "你不需要急著抵達，先把每一步走穩。",
-      "今天的你，比昨天更接近自己。",
-      "把目光放遠，海風會替你整理心緒。",
-      "別怕孤單，孤單是一種力量的誕生。",
-      "走到這裡，你已經很勇敢了。"
-    ];
-
-    const btn = document.getElementById("btn");
-    const quoteEl = document.getElementById("quote");
-
-    function pickQuote() {
-      const q = quotes[Math.floor(Math.random() * quotes.length)];
-      quoteEl.textContent = "「" + q + "」";
-    }
-
-    btn.addEventListener("click", pickQuote);
-  </script>
+                    <div class="hero-missions-feedback" id="hero-mission-feedback" aria-live="polite">
+                        <p>先選一個最貼近你現在心情的任務，看看這趟旅程為你準備了什麼訊息。</p>
+                    </div>
+                </section>
+                
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary">
+                        <span class="btn-text">🚢 開始第一關</span>
+                        <span class="btn-shine"></span>
+                    </button>
+                    
+                    <button type="button" class="btn btn-secondary">
+                        <span class="btn-text">🗺️ 旅程路線</span>
+                        <span class="btn-shine"></span>
+                    </button>
+                    
+                    <button type="button" class="btn btn-adventure">
+                        <span class="btn-text">⚓ 勇氣徽章</span>
+                        <span class="btn-shine"></span>
+                    </button>
+                </div>
+            </section>
+            
+            <!-- 海風中的呢喃互動區塊 -->
+            <section class="whisper-section card" aria-labelledby="whisper-title">
+                <h2 id="whisper-title">🌊 海風中的呢喃</h2>
+                <p class="location-tag">📍 蜜月灣・眺望龜山島</p>
+                <p class="whisper-intro">在頭城蜜月灣的海邊靜坐，遠眺龜山島，閉上眼睛，聽著海浪的聲音。讓 AI 引導你與內心對話。</p>
+                
+                <div class="whisper-container">
+                    <!-- AI 引導區域 -->
+                    <div class="ai-guide-area">
+                        <div class="ai-avatar">🤖</div>
+                        <div class="ai-message" id="ai-message">
+                            <p>準備好了嗎？點擊「開始引導」來開始這段內在旅程。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 控制按鈕區 -->
+                    <div class="whisper-controls">
+                        <button type="button" class="btn-whisper btn-start" id="btn-start-guide">
+                            <span>🎤 開始引導</span>
+                        </button>
+                        <button type="button" class="btn-whisper btn-stop" id="btn-stop-guide" style="display: none;">
+                            <span>⏸️ 暫停</span>
+                        </button>
+                    </div>
+                    
+                    <!-- 使用者回應區域 -->
+                    <div class="user-response-area" id="user-response-area" style="display: none;">
+                        <h3>你的感受</h3>
+                        <div class="input-methods">
+                            <button type="button" class="btn-input-method active" id="btn-voice-input" data-method="voice">
+                                🎤 語音輸入
+                            </button>
+                            <button type="button" class="btn-input-method" id="btn-text-input" data-method="text">
+                                ✍️ 文字輸入
+                            </button>
+                        </div>
+                        
+                        <!-- 語音輸入介面 -->
+                        <div class="voice-input-panel" id="voice-input-panel">
+                            <div class="recording-indicator" id="recording-indicator" style="display: none;">
+                                <span class="recording-dot"></span>
+                                <span>正在聆聽...</span>
+                            </div>
+                            <button type="button" class="btn-record" id="btn-record">
+                                <span>🎙️ 開始說話</span>
+                            </button>
+                            <div class="transcript-display" id="transcript-display"></div>
+                        </div>
+                        
+                        <!-- 文字輸入介面 -->
+                        <div class="text-input-panel" id="text-input-panel" style="display: none;">
+                            <textarea 
+                                id="text-response" 
+                                placeholder="請分享你的感受...海浪聲讓你想起什麼？它像你的內心嗎？"
+                                rows="4"
+                            ></textarea>
+                        </div>
+                        
+                        <button type="button" class="btn-submit" id="btn-submit-response" style="display: none;">
+                            <span>💭 送出感受</span>
+                        </button>
+                    </div>
+                    
+                    <!-- AI 反饋區域 -->
+                    <div class="ai-feedback-area" id="ai-feedback-area" style="display: none;">
+                        <div class="feedback-content" id="feedback-content"></div>
+                    </div>
+                    
+                    <!-- 靜坐計時器 -->
+                    <div class="meditation-timer" id="meditation-timer" style="display: none;">
+                        <h3>🧘 靜坐聆聽海浪聲</h3>
+                        <div class="timer-display" id="timer-display">10:00</div>
+                        <div class="timer-controls">
+                            <button type="button" class="btn-timer" id="btn-start-timer">開始靜坐</button>
+                            <button type="button" class="btn-timer" id="btn-pause-timer" style="display: none;">暫停</button>
+                            <button type="button" class="btn-timer" id="btn-reset-timer">重置</button>
+                        </div>
+                        <select id="timer-duration" class="timer-select">
+                            <option value="300">5 分鐘</option>
+                            <option value="600" selected>10 分鐘</option>
+                        </select>
+                    </div>
+                    
+                    <!-- 錄音與保存區域 -->
+                    <div class="recording-save-area" id="recording-save-area" style="display: none;">
+                        <h3>📝 記錄你的感受</h3>
+                        <div class="recording-controls">
+                            <button type="button" class="btn-record-feeling" id="btn-record-feeling">
+                                <span>🎙️ 錄下感受</span>
+                            </button>
+                            <div class="recording-status" id="recording-status"></div>
+                        </div>
+                        <div class="save-controls">
+                            <button type="button" class="btn-save" id="btn-save-note">
+                                <span>💾 保存至心靈筆記</span>
+                            </button>
+                            <button type="button" class="btn-view-notes" id="btn-view-notes">
+                                <span>📖 查看心靈筆記</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="features" aria-label="冒險特色">
+                <article class="feature-card">
+                    <div class="feature-icon">🌊</div>
+                    <h3>啟程・外澳</h3>
+                    <p>在金色沙丘與海面交界，寫下啟航宣言，預備好第一步。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">🏝️</div>
+                    <h3>跨越・蘭陽風雨</h3>
+                    <p>感受東北季風與細雨，練習面對不確定，找到自己的步調。</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-icon">⛵</div>
+                    <h3>回歸・蘇澳日出港</h3>
+                    <p>迎接晨曦，整理旅程洞見，為自己頒發勇氣徽章並分享故事。</p>
+                </article>
+            </section>
+        </main>
+    </div>
+    
+    <!-- 心靈筆記模態視窗 -->
+    <div class="modal" id="notes-modal" style="display: none;">
+        <div class="modal-content">
+            <span class="modal-close" id="modal-close">&times;</span>
+            <h2>📖 心靈筆記</h2>
+            <div class="notes-list" id="notes-list"></div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
 </body>
 </html>
+
+
+
